@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report_candidat" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" whenResourceMissingType="Empty" uuid="897447ca-6847-4c40-862e-e0786d7e990e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="159"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["/DiorhProfiler/static/reports/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="id" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="id_long" class="java.lang.Long" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="path" class="java.lang.String" isForPrompting="false"/>
+	<queryString>
+		<![CDATA[select
+civilite.libelle "civilite" ,utilisateur.nom_stockage, utilisateur.prenom_stockage,utilisateur.date_naissance, situation_familiale.libelle "situation_familiale",adresse,tel_portable,email
+,nationalite.libelle "nationalite"
+,utilisateur.preavis,utilisateur.remun_pretention, utilisateur.remun_montant_net
+from utilisateur
+left join civilite on utilisateur.civilite_id = civilite.id
+left join situation_familiale on utilisateur.situation_familiale_id= situation_familiale.id
+left join nationalite on utilisateur.nationalite_id = nationalite.id
+where utilisateur.id = cast($P{id} as int)]]>
+	</queryString>
+	<field name="civilite" class="java.lang.String"/>
+	<field name="nom_stockage" class="java.lang.String"/>
+	<field name="prenom_stockage" class="java.lang.String"/>
+	<field name="date_naissance" class="java.sql.Timestamp"/>
+	<field name="situation_familiale" class="java.lang.String"/>
+	<field name="adresse" class="java.lang.String"/>
+	<field name="tel_portable" class="java.lang.String"/>
+	<field name="email" class="java.lang.String"/>
+	<field name="nationalite" class="java.lang.String"/>
+	<field name="preavis" class="java.lang.Integer"/>
+	<field name="remun_pretention" class="java.lang.Double"/>
+	<field name="remun_montant_net" class="java.lang.Double"/>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="173">
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="438" height="20" uuid="02c73f33-ab27-4e33-b5e3-40618fd13043"/>
+				<box leftPadding="5"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9" isBold="true" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{civilite} + " " + $F{nom_stockage} + " " + $F{prenom_stockage}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="20" width="100" height="17" uuid="8a4047aa-e263-4b2c-8517-7dccf7d75054"/>
+				<box leftPadding="5"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Date de naissance :]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement x="100" y="20" width="150" height="17" uuid="c02cda57-5a76-442f-9a55-8293109240bc"/>
+				<box leftPadding="5"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{date_naissance}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="38" width="100" height="17" uuid="be35c3ba-9332-4c4f-9315-94411d99b16f"/>
+				<box leftPadding="5"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Situation familiale : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="56" width="100" height="17" uuid="18eed2c6-cd08-4e7b-8e1d-761e19ccf933"/>
+				<box leftPadding="5"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nationalité : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="74" width="100" height="17" uuid="f2cd83c5-4989-4f8a-a66e-81d9cda8ac03"/>
+				<box leftPadding="5"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Adresse :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="38" width="150" height="17" uuid="3bc772b9-30a8-4373-baa3-295ef961d878"/>
+				<box leftPadding="5"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{situation_familiale}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="56" width="150" height="17" uuid="bb64be6e-f874-480e-807d-40b294944a33"/>
+				<box leftPadding="5"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nationalite}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="100" y="74" width="338" height="17" uuid="5476a400-d072-4f64-a807-538602e775c7"/>
+				<box leftPadding="5"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{adresse}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="111" width="100" height="17" uuid="0511dd69-946a-4deb-a8ca-72787b4499c3"/>
+				<box leftPadding="5"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[GSM : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="129" width="100" height="17" uuid="5e75d96f-d89a-4c35-8714-20b381b97b8d"/>
+				<box leftPadding="5"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Adresse e-mail :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="111" width="162" height="17" uuid="63828f6f-b355-471b-b782-8e6ea137f149"/>
+				<box leftPadding="5"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tel_portable}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="129" width="162" height="17" uuid="0d74bb48-7321-478d-8788-b9c17a629f31"/>
+				<box leftPadding="5"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="96">
+			<subreport>
+				<reportElement x="0" y="48" width="555" height="40" uuid="750db6db-0c82-4adc-a0b8-ed944010c117"/>
+				<subreportParameter name="id">
+					<subreportParameterExpression><![CDATA[$P{id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+<!--				<subreportExpression><![CDATA["/var/lib/tomcat7/webapps/DiorhProfiler/reports/subReport_candidat_formations.jasper"]]></subreportExpression>-->
+                                <subreportExpression><![CDATA["http://www.diorhprofiler.com/DiorhProfiler/reports/subReport_candidat_formations.jasper"]]></subreportExpression>
+			</subreport>
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="1" width="555" height="20" forecolor="#000000" backcolor="#E6E6E6" uuid="2b63715b-f0c9-4e8d-8cfd-0f156ab1ff40"/>
+				<box leftPadding="10">
+					<pen lineWidth="0.5" lineStyle="Dashed"/>
+					<topPen lineWidth="0.5" lineStyle="Dashed"/>
+					<leftPen lineWidth="0.5" lineStyle="Dashed"/>
+					<bottomPen lineWidth="0.5" lineStyle="Dashed"/>
+					<rightPen lineWidth="0.5" lineStyle="Dashed"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Formations :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="73" y="24" width="125" height="20" forecolor="#000000" backcolor="#E6E6E6" uuid="f87b3ff5-f431-4d5b-a705-dc47e75d972a"/>
+				<box topPadding="3" leftPadding="3" bottomPadding="3" rightPadding="3"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Diplôme]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="2" y="24" width="66" height="20" forecolor="#000000" backcolor="#E6E6E6" uuid="a76d656d-4aec-402e-bb78-f2c227b23284"/>
+				<box topPadding="3" leftPadding="3" bottomPadding="3" rightPadding="3"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Année]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="371" y="24" width="184" height="20" forecolor="#000000" backcolor="#E6E6E6" uuid="d91b06b5-f6cc-4464-afb8-9efb5d566b85"/>
+				<box topPadding="3" leftPadding="3" bottomPadding="3" rightPadding="3"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Description]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="203" y="24" width="163" height="20" forecolor="#000000" backcolor="#E6E6E6" uuid="2717b896-e260-441f-83e8-ca0f1fd04386"/>
+				<box topPadding="3" leftPadding="3" bottomPadding="3" rightPadding="3"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Etablissement]]></text>
+			</staticText>
+			<line>
+				<reportElement mode="Opaque" x="2" y="41" width="551" height="1" uuid="a857040b-5758-4910-b232-78b199512169"/>
+			</line>
+		</band>
+		<band height="100">
+			<subreport>
+				<reportElement x="2" y="48" width="555" height="43" uuid="a3c1227b-0bbb-4359-b61c-89bd1c56c347"/>
+				<subreportParameter name="id">
+					<subreportParameterExpression><![CDATA[$P{id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+<!--				<subreportExpression><![CDATA["/var/lib/tomcat7/webapps/DiorhProfiler/reports/subReport_candidat_experiences.jasper"]]></subreportExpression>-->
+                                <subreportExpression><![CDATA["http://www.diorhprofiler.com/DiorhProfiler/reports/subReport_candidat_experiences.jasper"]]></subreportExpression>
+			</subreport>
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="1" width="555" height="20" forecolor="#000000" backcolor="#E6E6E6" uuid="b3a802d6-037b-4f85-8b91-639c17ab6a9f"/>
+				<box leftPadding="10">
+					<pen lineWidth="0.5" lineStyle="Dashed"/>
+					<topPen lineWidth="0.5" lineStyle="Dashed"/>
+					<leftPen lineWidth="0.5" lineStyle="Dashed"/>
+					<bottomPen lineWidth="0.5" lineStyle="Dashed"/>
+					<rightPen lineWidth="0.5" lineStyle="Dashed"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="SansSerif" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Expériences :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="389" y="24" width="165" height="20" forecolor="#000000" backcolor="#E6E6E6" uuid="d944a5c5-5656-4fa9-b84f-2abe7caa3be7"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="SansSerif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Description du Poste]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="128" y="24" width="120" height="20" forecolor="#000000" backcolor="#E6E6E6" uuid="c8cc8f45-955b-4629-b47e-c29dd6d9b3b2"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="SansSerif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Poste]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="253" y="24" width="131" height="20" forecolor="#000000" backcolor="#E6E6E6" uuid="1f6e3ce4-3c60-4804-b28c-05c4b9fb1752"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="SansSerif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Entreprise]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="2" y="24" width="121" height="20" forecolor="#000000" backcolor="#E6E6E6" uuid="8fa6fa6f-6cd5-4b8e-8b66-c81bb6f663e0"/>
+				<box leftPadding="5"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="SansSerif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Période]]></text>
+			</staticText>
+			<line>
+				<reportElement mode="Opaque" x="2" y="41" width="551" height="1" uuid="223a7510-57b6-4a5f-9ea3-a7e2fabb9e2e"/>
+			</line>
+		</band>
+		<band height="79">
+			<subreport>
+				<reportElement x="0" y="30" width="555" height="41" uuid="403b7d36-8f88-4e1b-bfdb-b6fbb9c947fc"/>
+				<subreportParameter name="id">
+					<subreportParameterExpression><![CDATA[$P{id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+                                <subreportExpression><![CDATA["http://www.diorhprofiler.com/DiorhProfiler/reports/subReport_candidat_informatiques.jasper"]]></subreportExpression>
+<!--				<subreportExpression><![CDATA["/var/lib/tomcat7/webapps/DiorhProfiler/reports/subReport_candidat_informatiques.jasper"]]></subreportExpression>-->
+			</subreport>
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="1" width="555" height="20" forecolor="#000000" backcolor="#E6E6E6" uuid="8ea9a8bb-6931-456a-b18c-1cae85202394"/>
+				<box leftPadding="10">
+					<pen lineWidth="0.5" lineStyle="Dashed"/>
+					<topPen lineWidth="0.5" lineStyle="Dashed"/>
+					<leftPen lineWidth="0.5" lineStyle="Dashed"/>
+					<bottomPen lineWidth="0.5" lineStyle="Dashed"/>
+					<rightPen lineWidth="0.5" lineStyle="Dashed"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="SansSerif" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Compétences informatiques :]]></text>
+			</staticText>
+		</band>
+		<band height="79">
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="1" width="555" height="20" forecolor="#000000" backcolor="#E6E6E6" uuid="c41474ab-5d43-43a2-8cff-7ad4cb6a8a11"/>
+				<box leftPadding="10">
+					<pen lineWidth="0.5" lineStyle="Dashed"/>
+					<topPen lineWidth="0.5" lineStyle="Dashed"/>
+					<leftPen lineWidth="0.5" lineStyle="Dashed"/>
+					<bottomPen lineWidth="0.5" lineStyle="Dashed"/>
+					<rightPen lineWidth="0.5" lineStyle="Dashed"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="SansSerif" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Compétences Linguistiques :]]></text>
+			</staticText>
+			<subreport>
+				<reportElement x="28" y="31" width="200" height="24" uuid="5b4a867c-bf7f-4eae-98b5-e52a2373a71c"/>
+				<subreportParameter name="id">
+					<subreportParameterExpression><![CDATA[$P{id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+<!--				<subreportExpression><![CDATA["/var/lib/tomcat7/webapps/DiorhProfiler/reports/subReport_candidat_langues.jasper"]]></subreportExpression>-->
+                                <subreportExpression><![CDATA["http://www.diorhprofiler.com/DiorhProfiler/reports/subReport_candidat_langues.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="14">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="1" width="555" height="13" backcolor="#E6E6E6" uuid="3d8b14cd-6247-43d6-8910-c5b44cd63685"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="1" width="40" height="13" backcolor="#E6E6E6" uuid="a2cf3ef1-7bc6-40e9-8151-aa1bd495e703"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="1" width="100" height="13" uuid="8ad9e3ca-1f6f-4509-a687-55027fea903b"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<lastPageFooter>
+		<band height="92">
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="2" width="555" height="20" forecolor="#000000" backcolor="#E6E6E6" uuid="659d2d90-24e4-4125-84ae-44507733bda2"/>
+				<box leftPadding="10">
+					<pen lineWidth="0.5" lineStyle="Dashed"/>
+					<topPen lineWidth="0.5" lineStyle="Dashed"/>
+					<leftPen lineWidth="0.5" lineStyle="Dashed"/>
+					<bottomPen lineWidth="0.5" lineStyle="Dashed"/>
+					<rightPen lineWidth="0.5" lineStyle="Dashed"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="SansSerif" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Autres :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="30" width="139" height="17" uuid="5da2a8a5-6ef6-4f01-90ee-a9ed49ac97a7"/>
+				<box leftPadding="5"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Préavis à respecter :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="48" width="139" height="17" uuid="eb11967b-c6aa-4f73-9c7f-73588e4ab9cd"/>
+				<box leftPadding="5"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Rémunération actuelle :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="66" width="139" height="17" uuid="a41d3c3f-ae70-4bd3-9deb-d8918b03dba3"/>
+				<box leftPadding="5"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Prétentions salariales :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="139" y="30" width="123" height="17" uuid="af01b714-63df-4ea2-9a8a-d8cb39068680"/>
+				<box leftPadding="5"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{preavis}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="139" y="48" width="123" height="17" uuid="5f3958e9-9034-4be0-888f-e491887f434c"/>
+				<box leftPadding="5"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{remun_montant_net}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="139" y="66" width="123" height="17" uuid="600860f3-b700-4f63-b399-f01aa5e30a80"/>
+				<box leftPadding="5"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{remun_pretention}]]></textFieldExpression>
+			</textField>
+		</band>
+	</lastPageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

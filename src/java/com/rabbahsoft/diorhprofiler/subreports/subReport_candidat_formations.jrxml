@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="subReport_candidat_formations" language="groovy" pageWidth="555" pageHeight="802" columnWidth="535" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="aa2940ae-e1c3-4b68-89ed-c72ad2084d6a">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idcandidat" class="java.lang.Long" isForPrompting="false"/>
+	<field name="annee" class="java.lang.String"/>
+	<field name="intituleDiplome" class="java.lang.String"/>
+	<field name="etablissement" class="java.lang.String"/>
+	<field name="description" class="java.lang.String"/>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="38">
+			<line>
+				<reportElement x="-20" y="37" width="575" height="1" forecolor="#666666" uuid="f878871c-9157-422e-a39f-7e9bcc368585"/>
+			</line>
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="12" width="168" height="20" forecolor="#000000" backcolor="#E6E6E6" uuid="e8cb46ae-da01-4244-b55d-fe749929bdb5"/>
+				<box leftPadding="5"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Formations :]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="21">
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="0" width="84" height="20" forecolor="#000000" backcolor="#E6E6E6" uuid="35f27b6b-2057-4081-b198-eda26b4e293b"/>
+				<box leftPadding="5"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Année]]></text>
+			</staticText>
+			<line>
+				<reportElement x="-20" y="20" width="575" height="1" forecolor="#666666" uuid="e26139de-fcc9-452b-93a0-946d72b750eb"/>
+			</line>
+			<staticText>
+				<reportElement mode="Transparent" x="84" y="0" width="84" height="20" forecolor="#000000" backcolor="#E6E6E6" uuid="5c2ab217-282a-47f4-88a0-9984d01cf175"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Diplôme]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="168" y="0" width="231" height="20" forecolor="#000000" backcolor="#E6E6E6" uuid="87c2ceb5-c58d-4683-86b8-fdd5ce7924d3"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Etablissement]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="399" y="0" width="156" height="20" forecolor="#000000" backcolor="#E6E6E6" uuid="9e504c4d-50c4-4bf3-8fca-57ab6ceee173"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Description]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="19">
+			<textField>
+				<reportElement x="0" y="0" width="84" height="19" uuid="ea10612b-160c-44b9-a9d0-951ce0fe2ed2"/>
+				<box leftPadding="5"/>
+				<textFieldExpression><![CDATA[$F{annee}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="84" y="0" width="84" height="19" uuid="31a8af9a-9b5d-4a9d-87fe-144de5836d87"/>
+				<textFieldExpression><![CDATA[$F{intituleDiplome}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="168" y="0" width="231" height="19" uuid="91871435-6472-4e2c-866f-68b2d8a2b7a7"/>
+				<textFieldExpression><![CDATA[$F{etablissement}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="399" y="0" width="156" height="19" uuid="74fcb21b-1f12-4920-ac63-f7298cf5e2a0"/>
+				<textFieldExpression><![CDATA[$F{description}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
